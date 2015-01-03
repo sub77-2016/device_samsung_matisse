@@ -1,4 +1,3 @@
-device_samsung_matisse
-======================
-
-SAMSUNG SM-T530 / SM-T535
+android_device_samsung_matisse
+=============================
+OmniRom android-5.0
