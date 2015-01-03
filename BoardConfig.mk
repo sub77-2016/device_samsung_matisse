@@ -24,7 +24,7 @@ TARGET_OTA_ASSERT_DEVICE := matissewifi,matisselte
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
 #TARGET_KERNEL_CONFIG := twrp_matissewifi_defconfig
-TARGET_KERNEL_CONFIG := twrp_matisselte_defconfig
+TARGET_KERNEL_CONFIG := twrp_matissewifi_defconfig
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 
@@ -84,15 +84,15 @@ PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-ifeq ($(TARGET_BUILD_VARIANT),user)
-ifeq ($(WITH_DEXPREOPT),)
-WITH_DEXPREOPT := true
-WITH_DEXPREOPT_BOOT_IMG_ONLY := false
-endif
-endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+#ifeq ($(HOST_OS),linux)
+#ifeq ($(TARGET_BUILD_VARIANT),user)
+#ifeq ($(WITH_DEXPREOPT),)
+#WITH_DEXPREOPT := true
+#WITH_DEXPREOPT_BOOT_IMG_ONLY := false
+#endif
+#endif
+#endif
+#WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
 
 # inherit from the proprietary version
 -include vendor/samsung/matisse/BoardConfigVendor.mk
