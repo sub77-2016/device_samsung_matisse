@@ -84,6 +84,17 @@ PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
 
+#MultiROM config. MultiROM also uses parts of TWRP config
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/samsung/matisse/init/mr_init_devices.c
+MR_DPI := hdpi
+MR_DPI_FONT := 160
+MR_FSTAB := $(LOCAL_PATH)/twrp.fstab
+MR_KEXEC_MEM_MIN := 0x05000000
+MR_KEXEC_DTB := true
+MR_INFOS := device/samsung/matisse/mrom_infos
+MR_CONTINUOUS_FB_UPDATE := true
+
 # Enable dex-preoptimization to speed up first boot sequence
 #ifeq ($(HOST_OS),linux)
 #ifeq ($(TARGET_BUILD_VARIANT),user)
