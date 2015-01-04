@@ -1,13 +1,12 @@
-#<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
-/boot           emmc            /dev/block/platform/msm_sdcc.1/by-name/boot
-/recovery       emmc            /dev/block/platform/msm_sdcc.1/by-name/recovery 
-/system         ext4            /dev/block/platform/msm_sdcc.1/by-name/system
-/data           ext4            /dev/block/platform/msm_sdcc.1/by-name/userdata
-/cache          ext4            /dev/block/platform/msm_sdcc.1/by-name/cache
-/efs            ext4            /dev/block/platform/msm_sdcc.1/by-name/efs
-/modem          emmc            /dev/block/platform/msm_sdcc.1/by-name/apnhlos
-/mdm            emmc            /dev/block/platform/msm_sdcc.1/by-name/modem
-/preload        ext4            /dev/block/platform/msm_sdcc.1/by-name/hidden
-#/sdcard         vfat            /dev/block/mmcblk0p26	/dev/block/mmcblk0  flags=display="Internal SDcard";storage
-/external_sd	vfat       /dev/block/mmcblk1p1   /dev/block/mmcblk1  flags=display="External SDcard";storage;wipeingui;removable
-/usb-otg    vfat        /dev/block/sda1    /dev/block/sda   flags=removable;storage;display=USB-OTG
+#<src>                                                <mnt_point>  <type>  <mnt_flags and options>		<fs_mgr_flags>
+/data			ext4		/dev/block/platform/msm_sdcc.1/by-name/userdata     flags=fsflags="inline_xattr";backup=1;display=DATA
+/cache		ext4		/dev/block/platform/msm_sdcc.1/by-name/cache		flags=backup=1;display=CACHE
+/system		ext4		/dev/block/platform/msm_sdcc.1/by-name/system		flags=backup=1;display=SYSTEM
+/boot			emmc		/dev/block/platform/msm_sdcc.1/by-name/boot		flags=backup=1;display=BOOT
+/recovery		emmc		/dev/block/platform/msm_sdcc.1/by-name/recovery	flags=backup=1;display=RECOVERY
+/mdm			emmc		/dev/block/platform/msm_sdcc.1/by-name/modem		flags=backup=1;display=MODEM
+/modem		emmc		/dev/block/platform/msm_sdcc.1/by-name/apnhlos	flags=backup=1;display=APNHLOS
+/efs            		ext4		/dev/block/platform/msm_sdcc.1/by-name/efs			flags=backup=1;display=EFS
+/preload		ext4		/dev/block/platform/msm_sdcc.1/by-name/hidden		flags=backup=0
+/external_sd	vfat		/dev/block/mmcblk1p1   /dev/block/mmcblk1  			flags=display="External SDcard";storage;wipeingui;removable
+/usb-otg		vfat		/dev/block/sda1   /dev/block/sda							flags=display="USB OTG";storage;wipeingui;removable
