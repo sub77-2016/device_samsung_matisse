@@ -34,8 +34,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:root/fstab.qcom
 
 #RIL
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril_class=ms013gDSRIL
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.telephony.ril_class=ms013gDSRIL
 
 # Default.prop overrides to get adb working at boot
 ADDITIONAL_DEFAULT_PROPERTIES += \

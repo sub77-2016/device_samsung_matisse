@@ -64,14 +64,10 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         gsm_properties();
     } else if (strstr(bootloader, "T530")) {
         /* matissewifi */
-        property_set("ro.build.fingerprint", "samsung/matisseltexx/matisselte:4.4.2/KOT49H/T530XXU1ANK1:user/release-keys");
-        property_set("ro.build.description", "matissewifixx-user 4.4.2 KOT49HT530XXU1ANK1 release-keys");
+        property_set("ro.build.fingerprint", "samsung/matissewifixx/matissewifi:4.4.2/KOT49H/T530XXU1ANH7:user/release-keys");
+        property_set("ro.build.description", "matissewifixx-user 4.4.2 KOT49HT530XXU1ANH7 release-keys");
         property_set("ro.product.model", "SM-T530");
         property_set("ro.product.device", "matissewifi");
-        property_set("persist.dsds.enabled", "true");
-        property_set("persist.radio.multisim.config", "dsds");
-        property_set("ro.telephony.ril_class", "SamsungMSM8226DSRIL");
-        gsm_properties();
     }
 
     property_get("ro.product.device", device);
