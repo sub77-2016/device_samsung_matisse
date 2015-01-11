@@ -50,7 +50,7 @@ TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_matissewifi.c
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_matisse.c
 TARGET_UNIFIED_DEVICE := true
 
 # Partitions
