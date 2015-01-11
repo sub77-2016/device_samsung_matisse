@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # Inherit from ms013g device
 $(call inherit-product, device/samsung/ms013g/device.mk)
@@ -22,5 +22,5 @@ $(call inherit-product, device/samsung/ms013g/device.mk)
 PRODUCT_DEVICE :=ms013g
 PRODUCT_NAME :=full_ms013g
 PRODUCT_BRAND :=samsung
-PRODUCT_MODEL :=SM-G7102
+PRODUCT_MODEL :=SM-T530
 PRODUCT_MANUFACTURER :=samsung

@@ -62,15 +62,15 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
 
 # Custom RIL class
-BOARD_RIL_CLASS := ../../../device/samsung/ms013g/ril/
+##BOARD_RIL_CLASS := ../../../device/samsung/ms013g/ril/
 
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 #TARGET_NO_INITLOGO := true
-##TARGET_QCOM_DISPLAY_VARIANT := caf
-TARGET_QCOM_DISPLAY_VARIANT := 
+TARGET_QCOM_DISPLAY_VARIANT := caf
+##TARGET_QCOM_DISPLAY_VARIANT := 
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -84,8 +84,8 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
 TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
-TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
-#TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_ms013g_eur_defconfig
+#TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_test_matissewifi_defconfig
 
 
 WLAN_MODULES:
@@ -123,8 +123,8 @@ BOARD_USES_QCOM_HARDWARE := true
 EXTENDED_FONT_FOOTPRINT := true
 
 #Media
-##TARGET_QCOM_MEDIA_VARIANT := caf
-TARGET_QCOM_MEDIA_VARIANT := 
+TARGET_QCOM_MEDIA_VARIANT := caf
+##TARGET_QCOM_MEDIA_VARIANT := 
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
