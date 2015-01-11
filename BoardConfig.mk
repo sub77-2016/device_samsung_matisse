@@ -19,14 +19,14 @@
 LOCAL_PATH := device/samsung/matisse
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := matissewifi,matisselte
+TARGET_OTA_ASSERT_DEVICE := matissewifi
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
-TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
-TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
+TARGET_KERNEL_CONFIG := msm8226-twrp_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8226-twrp_matissewifi_defconfig
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matissewifi.mk
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
@@ -37,7 +37,7 @@ TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_matisse.c
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_matissewifi.c
 TARGET_UNIFIED_DEVICE := true
 
 # Partitions
@@ -47,16 +47,16 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1866465280
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5555010560
 BOARD_CACHEIMAGE_PARTITION_SIZE := 218103808
 BOARD_FLASH_BLOCK_SIZE := 131072
-TARGET_USERIMAGES_USE_EXT4 := true
+#TARGET_USERIMAGES_USE_EXT4 := true
 
 # Radio
-BOARD_RIL_CLASS := ../../../device/samsung/matisse/ril/
+#BOARD_RIL_CLASS := ../../../device/samsung/matisse/ril/
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/matisse
 
 # Disable initlogo, Samsungs framebuffer is weird
-#TARGET_NO_INITLOGO := true
+TARGET_NO_INITLOGO := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom

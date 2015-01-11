@@ -39,6 +39,6 @@ $(call inherit-product, device/samsung/matisse/device_matisse.mk)
 PRODUCT_DEVICE := matisse
 PRODUCT_NAME := omni_matisse
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := matisse
+PRODUCT_MODEL := SM-T530
 PRODUCT_MANUFACTURER := samsung
 
