@@ -31,6 +31,12 @@ LOCAL_PATH := device/samsung/matisse
 #TARGET_OTA_ASSERT_DEVICE := matissewifi
 
 # Kernel
+#TARGET_PREBUILT_KERNEL := device/samsung/matisse/kernel_matissewifi
+#BOARD_MKBOOTIMG_ARGS := --dt dtb.img --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
+#BOARD_KERNEL_SEPARATED_DT := true
+#
+TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/matisse/kernel_matissewifi
+#
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
 TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
@@ -74,8 +80,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/matisse
 # Disable initlogo, Samsungs framebuffer is weird
 TARGET_NO_INITLOGO := true
 
-#TARGET_PREBUILT_KERNEL := device/samsung/matisse/kernel_matissewifi
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
@@ -100,7 +104,6 @@ HAVE_SELINUX := true
 TW_INCLUDE_L_CRYPTO := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_FLASH_FROM_STORAGE := true
-TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/matisse/kernel_matissewifi
 RECOVERY_SDCARD_ON_DATA := true 
 BOARD_HAS_NO_REAL_SDCARD := true
 SP1_NAME := "pds"
