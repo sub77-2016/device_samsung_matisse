@@ -1,4 +1,4 @@
-# System.prop for ms013g
+# System.prop for matissewifi
 
 # RIL
 rild.libpath=/system/lib/libsec-ril.so

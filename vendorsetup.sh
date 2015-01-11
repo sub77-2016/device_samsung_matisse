@@ -1,2 +1,2 @@
-add_lunch_combo slim_ms013g-userdebug
-add_lunch_combo full_ms013g-userdebug
+add_lunch_combo slim_matissewifi-userdebug
+add_lunch_combo full_matissewifi-userdebug
