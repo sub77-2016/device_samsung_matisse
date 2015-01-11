@@ -19,12 +19,16 @@
 LOCAL_PATH := device/samsung/matisse
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := matissewifi
+#TARGET_OTA_ASSERT_DEVICE := matissewifi
 
 # Kernel
+#TARGET_KERNEL_SOURCE := kernel/samsung/matissewifi
+#TARGET_KERNEL_CONFIG := twrp_matissewifi_defconfig
+#TARGET_KERNEL_VARIANT_CONFIG := msm8226-twrp_matissewifi_defconfig
+
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
-TARGET_KERNEL_CONFIG := msm8226-twrp_defconfig
-TARGET_KERNEL_VARIANT_CONFIG := msm8226-twrp_matissewifi_defconfig
+TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matissewifi.mk
 
@@ -47,7 +51,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1866465280
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5555010560
 BOARD_CACHEIMAGE_PARTITION_SIZE := 218103808
 BOARD_FLASH_BLOCK_SIZE := 131072
-#TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_EXT4 := true
 
 # Radio
 #BOARD_RIL_CLASS := ../../../device/samsung/matisse/ril/
@@ -62,6 +66,7 @@ TARGET_NO_INITLOGO := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
 #TWRP
+TW_USE_TOOLBOX := true
 DEVICE_RESOLUTION := 1280x800
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 #TW_BRIGHTNESS_PATH := /sys/class/backlight/lcd-backlight/brightness
@@ -78,21 +83,29 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
 BOARD_HAS_NO_REAL_SDCARD := false
 RECOVERY_SDCARD_ON_DATA := true
 HAVE_SELINUX := true
-TW_INCLUDE_L_CRYPTO := true
+#TW_INCLUDE_L_CRYPTO := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_FLASH_FROM_STORAGE := true
+#TARGET_PREBUILT_RECOVERY_KERNEL := path/to/kernel 
+RECOVERY_SDCARD_ON_DATA := true 
+BOARD_HAS_NO_REAL_SDCARD := true
+SP1_NAME := "pds"
+SP1_BACKUP_METHOD := files
+SP1_MOUNTABLE := 1
 
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
 #MultiROM config. MultiROM also uses parts of TWRP config
-MR_INPUT_TYPE := type_b
-MR_INIT_DEVICES := device/motorola/falcon/init/mr_init_devices.c
-MR_DPI := hdpi
-MR_DPI_FONT := 160
-MR_FSTAB := $(LOCAL_PATH)/twrp.fstab
-MR_KEXEC_MEM_MIN := 0x05000000
-MR_KEXEC_DTB := true
-MR_INFOS := device/motorola/falcon/mrom_infos
-MR_CONTINUOUS_FB_UPDATE := true
+#MR_INPUT_TYPE := type_b
+#MR_INIT_DEVICES := device/motorola/falcon/init/mr_init_devices.c
+#MR_DPI := hdpi
+#MR_DPI_FONT := 160
+#MR_FSTAB := $(LOCAL_PATH)/twrp.fstab
+#MR_KEXEC_MEM_MIN := 0x05000000
+#MR_KEXEC_DTB := true
+#MR_INFOS := device/motorola/falcon/mrom_infos
+#MR_CONTINUOUS_FB_UPDATE := true
 
 # Enable dex-preoptimization to speed up first boot sequence
 #ifeq ($(HOST_OS),linux)
