@@ -13,6 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# WARNING: This line must come *before* including the proprietary
+# variant, so that it gets overwritten by the parent (which goes
+# against the traditional rules of inheritance).
+
+USE_CAMERA_STUB := true
+#BOARD_CAMERA_USE_GETBUFFERINFO := true
+#BOARD_USE_FROYO_LIBCAMERA := true
+#BOARD_USE_CAF_LIBCAMERA := false
+
 # inherit from common msm8226-common
 -include device/samsung/msm8226-common/BoardConfigCommon.mk
 
@@ -62,6 +71,8 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/matisse
 # Disable initlogo, Samsungs framebuffer is weird
 TARGET_NO_INITLOGO := true
 
+#TARGET_PREBUILT_KERNEL := device/samsung/matisse/kernel_matissewifi
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
@@ -69,7 +80,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TW_USE_TOOLBOX := true
 DEVICE_RESOLUTION := 1280x800
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-#TW_BRIGHTNESS_PATH := /sys/class/backlight/lcd-backlight/brightness
+TW_BRIGHTNESS_PATH := /sys/class/backlight/lcd-backlight/brightness
 #TW_MAX_BRIGHTNESS := 126
 TW_IGNORE_MAJOR_AXIS_0 := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
@@ -86,7 +97,7 @@ HAVE_SELINUX := true
 TW_INCLUDE_L_CRYPTO := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_FLASH_FROM_STORAGE := true
-TARGET_PREBUILT_RECOVERY_KERNEL := kernel_matissewifi
+TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/matisse/kernel_matissewifi
 RECOVERY_SDCARD_ON_DATA := true 
 BOARD_HAS_NO_REAL_SDCARD := true
 SP1_NAME := "pds"
