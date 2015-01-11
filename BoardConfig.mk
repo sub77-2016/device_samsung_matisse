@@ -31,13 +31,11 @@ LOCAL_PATH := device/samsung/matisse
 #TARGET_OTA_ASSERT_DEVICE := matissewifi
 
 # Kernel
-#TARGET_KERNEL_SOURCE := kernel/samsung/matissewifi
-#TARGET_KERNEL_CONFIG := twrp_matissewifi_defconfig
-#TARGET_KERNEL_VARIANT_CONFIG := msm8226-twrp_matissewifi_defconfig
-
 TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
 TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
 TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
+#TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matisselte_defconfig
+#TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matisse3g_defconfig
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matissewifi.mk
 
