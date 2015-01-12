@@ -31,31 +31,34 @@ LOCAL_PATH := device/samsung/matisse
 #TARGET_OTA_ASSERT_DEVICE := matissewifi
 
 # Kernel
-#TARGET_PREBUILT_KERNEL := device/samsung/matisse/kernel_matissewifi
+TARGET_PREBUILT_KERNEL := device/samsung/matisse/kernel_matissewifi
 #BOARD_MKBOOTIMG_ARGS := --dt dtb.img --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 #BOARD_KERNEL_SEPARATED_DT := true
 #
 TARGET_PREBUILT_RECOVERY_KERNEL := device/samsung/matisse/kernel_matissewifi
 #
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
-TARGET_KERNEL_SOURCE := kernel/samsung/ms013g
+TARGET_KERNEL_SOURCE := kernel/samsung/matisse
 TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
-#
 TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matissewifi.mk
+#
+#TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matissewifi_defconfig
+#BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matissewifi.mk
 #
 #TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matisselte_defconfig
 #BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matisselte.mk
 #
 #TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matisse3g_defconfig
 #BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg-matisse3g.mk
+#
+#BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 
-WLAN_MODULES:
-	mkdir -p $(KERNEL_MODULES_OUT)/pronto
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+#WLAN_MODULES:
+#	mkdir -p $(KERNEL_MODULES_OUT)/pronto
+#	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
+#	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
 
-TARGET_KERNEL_MODULES += WLAN_MODULES
+#TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
@@ -72,7 +75,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Radio
-#BOARD_RIL_CLASS := ../../../device/samsung/matisse/ril/
+BOARD_RIL_CLASS := ../../../device/samsung/matisse/ril/
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/matisse
@@ -83,57 +86,64 @@ TARGET_NO_INITLOGO := true
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 
-#TWRP
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
+
+# TWRP
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
 TW_USE_TOOLBOX := true
 DEVICE_RESOLUTION := 1280x800
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_BRIGHTNESS_PATH := /sys/class/backlight/lcd-backlight/brightness
-#TW_MAX_BRIGHTNESS := 126
-TW_IGNORE_MAJOR_AXIS_0 := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_NO_USB_STORAGE := true
-TW_NO_SCREEN_TIMEOUT := true
-TW_NO_SCREEN_BLANK := true
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-BOARD_HAS_NO_REAL_SDCARD := false
 RECOVERY_SDCARD_ON_DATA := true
-HAVE_SELINUX := true
-TW_INCLUDE_L_CRYPTO := true
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_FLASH_FROM_STORAGE := true
-RECOVERY_SDCARD_ON_DATA := true 
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
 BOARD_HAS_NO_REAL_SDCARD := true
-SP1_NAME := "pds"
+#TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_L_CRYPTO := true
+TW_INCLUDE_CRYPTO_SAMSUNG := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p26"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,noauto_da_alloc,journal_async_commit,errors=panic wait,check,encryptable=footer"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
+HAVE_SELINUX := true
+
+SP1_NAME := "recovery"
 SP1_BACKUP_METHOD := files
 SP1_MOUNTABLE := 1
 
 PRODUCT_COPY_FILES += \
-$(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+$(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
 #MultiROM config. MultiROM also uses parts of TWRP config
-#MR_INPUT_TYPE := type_b
-#MR_INIT_DEVICES := device/motorola/falcon/init/mr_init_devices.c
-#MR_DPI := hdpi
-#MR_DPI_FONT := 160
-#MR_FSTAB := $(LOCAL_PATH)/twrp.fstab
-#MR_KEXEC_MEM_MIN := 0x05000000
-#MR_KEXEC_DTB := true
-#MR_INFOS := device/motorola/falcon/mrom_infos
-#MR_CONTINUOUS_FB_UPDATE := true
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/samsung/matisse/init/mr_init_devices.c
+MR_DPI := hdpi
+MR_DPI_FONT := 160
+MR_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
+MR_KEXEC_MEM_MIN := 0x05000000
+MR_KEXEC_DTB := true
+MR_INFOS := device/samsung/matisse/mrom_infos
+MR_CONTINUOUS_FB_UPDATE := true
 
 # Enable dex-preoptimization to speed up first boot sequence
-#ifeq ($(HOST_OS),linux)
-#ifeq ($(TARGET_BUILD_VARIANT),user)
-#ifeq ($(WITH_DEXPREOPT),)
-#WITH_DEXPREOPT := true
-#WITH_DEXPREOPT_BOOT_IMG_ONLY := false
-#endif
-#endif
-#endif
-#WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+ifeq ($(HOST_OS),linux)
+ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(WITH_DEXPREOPT),)
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_BOOT_IMG_ONLY := false
+endif
+endif
+endif
+WITH_DEXPREOPT_BOOT_IMG_ONLY := true
 
 # inherit from the proprietary version
 -include vendor/samsung/matisse/BoardConfigVendor.mk
